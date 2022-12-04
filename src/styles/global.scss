@@ -1,0 +1,21 @@
+@import "vars";
+html {
+  height: 100%;
+  overflow-y: scroll;
+  color: white;
+}
+
+body {
+  background-color: $background;
+  margin: 0;
+  padding: 0;
+}
+
+input, button{
+  border: none;
+  color: white;
+
+  &:focus {
+    outline: none;
+  }
+}
