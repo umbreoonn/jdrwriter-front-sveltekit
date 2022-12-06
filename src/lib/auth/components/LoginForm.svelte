@@ -1,15 +1,29 @@
-<form class="auth-form">
-    <input
-            class="auth-text-input"
-            type="text"
-            placeholder="Adresse e-mail"/>
-    <input
-            class="auth-text-input"
-            type="password"
-            placeholder="Mot de passe"/>
-    <button class="auth-submit-button" type="submit"> Me connecter !</button>
-</form>
+<script>
+    import Spinner from "$lib/common/components/Spinner.svelte";
+    import FormTextField from "$lib/auth/components/FormTextField.svelte";
+    import {login} from "$lib/auth/services/auth.ts";
 
-<style lang="scss">
-  @import "../style/style";
-</style>
+    let loading = false;
+    let userCredentials = {
+        username: "",
+        password: ""
+    };
+
+    async function handleSubmit() {
+        loading = true;
+        await login(userCredentials);
+        loading = false;
+    }
+
+</script>
+
+
+<form class="auth-form" on:submit={handleSubmit}>
+    <FormTextField label={"Nom d'utilisateur"} bind:value={userCredentials.username} />
+    <FormTextField label={'Mot de passe'} inputType={'password'} bind:value={userCredentials.password} />
+    {#if !loading}
+        <button class="auth-submit-button" type="submit" on:click={handleSubmit}> Me connecter !</button>
+        {:else}
+        <Spinner/>
+    {/if}
+</form>
