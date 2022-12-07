@@ -1,10 +1,11 @@
-<script>
+<script lang="ts">
     import Spinner from "$lib/common/components/Spinner.svelte";
     import FormTextField from "$lib/auth/components/FormTextField.svelte";
     import {login} from "$lib/auth/services/auth.ts";
+    import type {UserCredentials} from "$lib/auth/models/User"
 
     let loading = false;
-    let userCredentials = {
+    const userCredentials: UserCredentials = {
         username: "",
         password: ""
     };
