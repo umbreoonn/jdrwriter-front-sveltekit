@@ -2,6 +2,7 @@
 	export let label: string | null;
 	export let inputType = 'text';
 	export let value: string | null;
+	export let name: string;
 
 	function handleInput(event: InputEvent) {
 		const element = event.target as HTMLInputElement;
@@ -15,5 +16,6 @@
 	type={inputType}
 	placeholder={label}
 	{value}
+	name={name}
 	on:input={handleInput}
 />
